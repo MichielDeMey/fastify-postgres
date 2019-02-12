@@ -92,30 +92,30 @@ test('use query util with promises', t => {
   })
 })
 
-// test('use native module', t => {
-//   t.plan(2)
+test('use native module', t => {
+  t.plan(2)
 
-//   const fastify = Fastify()
+  const fastify = Fastify()
 
-//   fastify.register(fastifyPostgres, {
-//     connectionString: 'postgres://postgres@localhost/postgres',
-//     native: true
-//   })
+  fastify.register(fastifyPostgres, {
+    connectionString: 'postgres://postgres@localhost/postgres'
+    // native: true
+  })
 
-//   fastify.ready(err => {
-//     t.error(err)
-//     fastify.pg
-//       .query('SELECT 1 AS one')
-//       .then(result => {
-//         t.ok(result.rows[0].one === 1)
-//         fastify.close()
-//       })
-//       .catch(err => {
-//         t.fail(err)
-//         fastify.close()
-//       })
-//   })
-// })
+  fastify.ready(err => {
+    t.error(err)
+    fastify.pg
+      .query('SELECT 1 AS one')
+      .then(result => {
+        t.ok(result.rows[0].one === 1)
+        fastify.close()
+      })
+      .catch(err => {
+        t.fail(err)
+        fastify.close()
+      })
+  })
+})
 
 test('use alternative pg module', t => {
   const altPg = require('pg')
@@ -235,31 +235,31 @@ test('fastify.pg.test use query util with promises', t => {
   })
 })
 
-// test('fastify.pg.test use native module', t => {
-//   t.plan(2)
+test('fastify.pg.test use native module', t => {
+  t.plan(2)
 
-//   const fastify = Fastify()
+  const fastify = Fastify()
 
-//   fastify.register(fastifyPostgres, {
-//     name: 'test',
-//     connectionString: 'postgres://postgres@localhost/postgres',
-//     native: true
-//   })
+  fastify.register(fastifyPostgres, {
+    name: 'test',
+    connectionString: 'postgres://postgres@localhost/postgres'
+    // native: true
+  })
 
-//   fastify.ready(err => {
-//     t.error(err)
-//     fastify.pg.test
-//       .query('SELECT 1 AS one')
-//       .then(result => {
-//         t.ok(result.rows[0].one === 1)
-//         fastify.close()
-//       })
-//       .catch(err => {
-//         t.fail(err)
-//         fastify.close()
-//       })
-//   })
-// })
+  fastify.ready(err => {
+    t.error(err)
+    fastify.pg.test
+      .query('SELECT 1 AS one')
+      .then(result => {
+        t.ok(result.rows[0].one === 1)
+        fastify.close()
+      })
+      .catch(err => {
+        t.fail(err)
+        fastify.close()
+      })
+  })
+})
 
 test('fastify.pg.test should throw with duplicate connection names', t => {
   t.plan(1)
